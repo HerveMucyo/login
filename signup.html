@@ -11,15 +11,46 @@
 <body>
     <div class="container">
         <h1>Sign Up</h1>
-        <form id="login-form">
-            <input type="text" id="login-email" placeholder="Email" required>
-            <input type="password" id="login-password" placeholder="Password" required>
+        <form id="signup-form">
+            <input type="text" id="first-name" placeholder="First Name" required>
+            <input type="text" id="last-name" placeholder="Last Name" required>
+            <input type="text" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            <input type="date" id="birthdate" placeholder="Date of Birth" required>
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+            <input type="text" id="address" placeholder="Address" required>
+            <input type="text" id="city" placeholder="City" required>
+            <input type="text" id="country" placeholder="Country" required>
+            <span id="password-error" class="error"></span>
             <button type="submit">Sign Up</button>
         </form>
-        <a href="index.html">Sign Up</a>
+        <a href="index.html">Sign In</a>
         <a href="forgot_password.html">Forgot Password</a>
     </div>
     <script src="script.js"></script>
+    <script>
+        document.getElementById("signup-form").addEventListener("submit", function(e) {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+            const passwordError = document.getElementById("password-error");
+
+            if (password.length < 8) {
+                passwordError.textContent = "Password must be at least 8 characters long.";
+                e.preventDefault();
+            } else if (!/[0-9]/.test(password)) {
+                passwordError.textContent = "Password must contain at least one number.";
+                e.preventDefault();
+            } else {
+                passwordError.textContent = "";
+            }
+
+            if (password !== confirmPassword) {
+                passwordError.textContent = "Passwords do not match.";
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
 
 </html>
